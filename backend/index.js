@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://pixora-plum.vercel.app/",
+    origin: "https://pixora-8yrdofcpj-akshay-gangurdes-projects.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
