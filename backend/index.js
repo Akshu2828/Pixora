@@ -8,11 +8,13 @@ import http from "http";
 import dotenv from "dotenv";
 dotenv.config();
 
+const PORT = process.env.MONGO_URL || 9000;
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: "https://pixora-plum.vercel.app/",
     methods: ["GET", "POST"],
     credentials: true,
   },
@@ -57,6 +59,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(9000, () => {
+server.listen(PORT, () => {
   console.log("Server is listening on port 9000");
 });
