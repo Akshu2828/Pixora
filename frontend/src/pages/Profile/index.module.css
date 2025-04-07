@@ -1,0 +1,481 @@
+.ProfileContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.UserProfile {
+  width: 80%;
+  margin-block: 3rem;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  gap: 3rem;
+}
+
+.userProfileData {
+  flex: 0.4;
+  display: flex;
+  margin-left: 10rem;
+}
+
+.userProfileImage {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.userProfileImage img {
+  border-radius: 50%;
+  width: 50%;
+}
+
+.userProfiledata {
+  width: 70%;
+  height: 100%;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.userDataOne {
+  flex: 0.2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.follow_btn {
+  background-color: #0095f6;
+  padding-inline: 1rem;
+  padding-block: 10px;
+  border-radius: 10px;
+}
+
+.editProfile_btn {
+  background-color: #626567;
+  padding-inline: 1rem;
+  padding-block: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.logoutButton {
+  margin-right: 3rem;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  padding-block: 10px;
+  padding-inline: 1rem;
+  border-radius: 10px;
+}
+
+.logoutButton:hover {
+  background-color: white;
+  color: red;
+  cursor: pointer;
+}
+
+.userDataTwo {
+  flex: 0.2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.userTotalPosts {
+  gap: 10px;
+  display: flex;
+}
+
+.userTotalFollowers {
+  gap: 10px;
+  display: flex;
+}
+
+.userTotalFollowing {
+  gap: 10px;
+  display: flex;
+}
+
+.userDataThree {
+  flex: 0.6;
+}
+
+.userPosts {
+  flex: 0.6;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+  padding: 10px;
+  align-items: start;
+  padding-block: 2rem;
+  border-top: 1px solid rgb(61, 58, 58);
+}
+
+.postImage {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.postImage img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.postMainContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 15;
+  background: rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.PostResetIcon {
+  position: fixed;
+  color: white;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  margin-right: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.postContainer {
+  background-color: black;
+  width: 70vw;
+  height: 90vh;
+  border-radius: 10px;
+  display: flex;
+}
+
+.postMediaContainer {
+  flex: 0.6;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postMediaContainer img {
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: auto;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.postcommentsContainer {
+  flex: 0.4;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.postUserProfile {
+  flex: 0.1;
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  border-bottom: 1px solid rgb(65, 63, 63);
+}
+
+.postBody {
+  flex: 0.1;
+  display: flex;
+  align-items: center;
+  padding-inline: 10px;
+  border-bottom: 1px solid rgb(65, 63, 63);
+}
+
+.CommentContainer {
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: auto;
+  padding-inline: 10px;
+  padding-block: 10px;
+  scrollbar-width: none;
+  width: 100%;
+  border-bottom: 1px solid rgb(65, 63, 63);
+}
+
+.CommentContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.mainCommentContainer {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  padding-block: 10px;
+  width: 100%;
+}
+
+.commentIput_container {
+  flex: 0.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.commentIput_container input {
+  width: 70%;
+  height: 40%;
+  border: none;
+  outline: none;
+  padding-inline: 10px;
+  border-radius: 10px;
+  background-color: transparent;
+  color: white;
+}
+
+.commentIput_container div {
+  background-color: #0095f6;
+  padding-inline: 10px;
+  border-radius: 10px;
+  height: 40%;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 19;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.EditProfileContainer {
+  position: relative;
+  width: 60%;
+  height: 70vh;
+  background-color: black;
+  border-radius: 20px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+}
+
+.updateProfilePicture {
+  flex: 0.3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.updateProfilePictureMainContainer {
+  background-color: #262626;
+  width: 80%;
+  height: 70%;
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  gap: 10px;
+  padding-inline: 20px;
+  position: relative;
+}
+
+.profileImage img {
+  border-radius: 50%;
+  width: 70px;
+}
+
+.imageUpdateBtn {
+  position: absolute;
+  right: 0;
+  margin-right: 30px;
+  background-color: #0095f6;
+  padding-inline: 20px;
+  padding-block: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.updateUsername {
+  flex: 0.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.usernameIput {
+  width: 80%;
+}
+
+.usernameIput input {
+  width: 100%;
+  padding-block: 20px;
+  background-color: #262626;
+  color: white;
+  border-radius: 10px;
+  padding-inline: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+}
+
+.updateBio {
+  flex: 0.25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bioTextarea {
+  width: 80%;
+}
+
+.bioTextarea textarea {
+  width: 100%;
+  padding-block: 20px;
+  background-color: #262626;
+  color: white;
+  border-radius: 10px;
+  padding-inline: 20px;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1.1rem;
+}
+
+.updateButtons {
+  flex: 0.25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileUpdateButton {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.submitButton {
+  background-color: #0095f6;
+  padding-inline: 20px;
+  padding-block: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: #0095f6;
+  padding-inline: 20px;
+  padding-block: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 3rem;
+  background-color: red;
+}
+
+@media (max-width: 600px) {
+  .ProfileContainer {
+    justify-content: left;
+  }
+  .userProfileData {
+    margin-left: 0;
+  }
+
+  .userProfileImage {
+    margin-left: 0;
+  }
+
+  .userPosts {
+    width: 100vw;
+    grid-template-columns: repeat(2, 1fr);
+    padding-inline: 1rem;
+  }
+
+  .postContainer {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .PostResetIcon {
+    margin-top: 0;
+  }
+
+  .postcommentsContainer {
+    gap: 10px;
+    width: 100%;
+  }
+
+  .postMediaContainer {
+    max-height: 400px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .postUserProfile {
+    padding-bottom: 10px;
+  }
+
+  .postBody {
+    padding-bottom: 10px;
+  }
+
+  .EditProfileContainer {
+    width: 100vw;
+    height: 90vh;
+  }
+
+  .updateProfilePictureMainContainer {
+    width: 100%;
+    border-radius: 0;
+  }
+  .updateUsername {
+    display: block;
+    width: 100%;
+  }
+
+  .usernameIput {
+    width: 100%;
+  }
+
+  .usernameIput input {
+    border-radius: 0;
+  }
+
+  .updateBio {
+    display: block;
+  }
+
+  .bioTextarea {
+    width: 100%;
+  }
+
+  .bioTextarea textarea {
+    border-radius: 0;
+  }
+}

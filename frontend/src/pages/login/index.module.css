@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container_leftSide {
+  flex: 0.5;
+}
+
+.container_rigthSide {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  height: 80%;
+}
+
+.container_rigthSide_logo h2 {
+  font-family: "Poppins";
+  padding: 10px;
+}
+
+.container_Input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+
+.container_Input input {
+  width: 40%;
+  padding-inline: 15px;
+  padding-block: 10px;
+  border-radius: 10px;
+  border: 1px solid silver;
+}
+
+.authButton {
+  background-color: #0095f6;
+  border-radius: 10px;
+  width: 40%;
+  text-align: center;
+  padding-block: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .container_leftSide {
+    display: none;
+  }
+
+  .container_rigthSide {
+    width: 100%;
+  }
+}
