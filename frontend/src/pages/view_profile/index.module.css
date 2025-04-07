@@ -329,7 +329,7 @@
   border-radius: 10px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 728px) {
   .ProfileContainer {
     justify-content: left;
   }
