@@ -157,12 +157,15 @@
 
 @media (max-width: 600px) {
   .ExploreContainer {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, minmax(300px, 1fr));
     padding-inline: 1rem;
   }
 
   .postContainer {
     width: 100%;
+    height: 100%;
+    border-radius: 0;
+    overflow-y: auto;
     flex-direction: column;
     align-items: center;
   }
@@ -172,12 +175,12 @@
   }
 
   .postcommentsContainer {
-    gap: 10px;
+    gap: 5px;
     width: 100%;
   }
 
   .postMediaContainer {
-    max-height: 400px;
+    max-height: 300px;
     max-width: 100%;
     display: flex;
     align-items: center;
@@ -190,5 +193,13 @@
 
   .postBody {
     padding-bottom: 10px;
+  }
+
+  .commentIput_container {
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    width: 90%;
+    height: 15vh;
   }
 }

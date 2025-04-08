@@ -61,6 +61,18 @@ export default function ProfilePage() {
     }
   }, [authState?.user, postState.posts]);
 
+  useEffect(() => {
+    if (postState.postId !== "") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [postState.postId]);
+
   const handleCommentPost = async () => {
     await dispatch(
       CommentPost({
@@ -119,7 +131,7 @@ export default function ProfilePage() {
     <Dashboardlayout>
       <div className={Styles.ProfileContainer}>
         <div className={Styles.UserProfile}>
-          <div className={Styles.userProfileData}>
+          <div className={Styles.userProfileDataMain}>
             <div className={Styles.userProfileImage}>
               <img src={`${authState?.user?.userId?.profilePicture}`} />
             </div>

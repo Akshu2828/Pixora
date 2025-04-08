@@ -130,6 +130,18 @@ export default function ViewProfile({ userProfile }) {
     return () => {
       document.body.style.overflow = "auto";
     };
+  }, [isChatModal]);
+
+  useEffect(() => {
+    if (postState.postId !== "") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [postState.postId]);
 
   const handleChatModal = () => {
@@ -180,9 +192,14 @@ export default function ViewProfile({ userProfile }) {
             <div className={Styles.userProfileImage}>
               <img src={`${userProfile?.userId?.profilePicture}`} />
             </div>
+            <div className={Styles.user_usernameOne}>
+              <p style={{ fontWeight: "bold" }}>
+                {userProfile?.userId?.username}
+              </p>
+            </div>
             <div className={Styles.userProfiledata}>
               <div className={Styles.userDataOne}>
-                <div className={Styles.user_username}>
+                <div className={Styles.user_usernameTwo}>
                   <p style={{ fontWeight: "bold" }}>
                     {userProfile?.userId?.username}
                   </p>
@@ -278,7 +295,7 @@ export default function ViewProfile({ userProfile }) {
                       backgroundColor:
                         msg.senderId === authState.user.userId._id
                           ? "#0095f6"
-                          : "#fff",
+                          : "#363636",
 
                       alignSelf:
                         msg.senderId === authState.user.userId._id

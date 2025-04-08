@@ -344,8 +344,8 @@ export default function Dashboardlayout({ children }) {
           <img
             src={`${authState?.user?.userId?.profilePicture}`}
             alt="Profile"
-            width="50"
-            height="50"
+            width="40"
+            height="40"
             style={{ borderRadius: "50%" }}
           />
         </div>

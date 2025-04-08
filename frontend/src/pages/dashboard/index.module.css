@@ -230,6 +230,15 @@
   display: none;
 }
 
+.CommentIcon_Container {
+  flex: 0.1;
+  background-color: black;
+}
+
+.commentIput_container {
+  flex: 0.1;
+}
+
 .mainCommentContainer {
   position: relative;
   display: flex;
@@ -276,7 +285,7 @@
   width: 100%;
   height: 7vh;
   padding-left: 1rem;
-  border-bottom: 1px solid silver;
+  border-bottom: 1px solid rgb(79, 72, 72);
   background-color: black;
   display: none;
 }
@@ -291,6 +300,7 @@
   }
   .dashboard_container_middle {
     margin-top: 4rem;
+    padding: 0;
     display: block;
   }
   .dashboard_container_rigth {
@@ -305,14 +315,23 @@
 
   .UserStory_Container {
     width: 100%;
+    padding-inline: 10px;
+    height: 7vh;
+  }
+
+  .profilePicture {
+    height: 40px;
   }
 
   .UserPost_Container {
     width: 100%;
+    padding: 0;
+    padding-top: 20px;
+    padding-left: 10px;
   }
 
   .postUser_media img {
-    width: 100%;
+    width: 100vw;
     height: auto;
   }
 
@@ -327,12 +346,26 @@
   }
 
   .postcommentsContainer {
-    width: 100%;
     margin-right: 0;
     position: relative;
     gap: 20px;
     padding: 10px;
     margin-top: 3rem;
+    height: 100vh;
+  }
+
+  .postUserProfile {
+    height: 10;
+  }
+
+  .CommentContainer {
+    border: none;
+    overflow-y: auto;
+  }
+
+  .mainCommentContainer {
+    margin-right: 0;
+    display: flex;
   }
 
   .CommentIcon_Container {
@@ -342,9 +375,6 @@
     border-top: 1px solid silver;
     width: 100%;
     padding-top: 10px;
-  }
-  .CommentContainer {
-    border: none;
   }
 
   .commentIput_container {

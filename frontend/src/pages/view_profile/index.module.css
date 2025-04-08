@@ -329,12 +329,33 @@
   border-radius: 10px;
 }
 
+.user_usernameOne {
+  display: none;
+}
+
 @media (max-width: 728px) {
   .ProfileContainer {
     justify-content: left;
+    display: block;
+  }
+
+  .UserProfile {
+    margin-block: 1rem;
+    width: 100%;
+    gap: 0;
   }
   .userProfileData {
     margin-left: 0;
+    flex-direction: column;
+  }
+
+  .user_usernameOne {
+    display: block;
+    margin-left: 10px;
+  }
+
+  .user_usernameTwo {
+    display: none;
   }
 
   .userProfileImage {
@@ -349,6 +370,9 @@
 
   .postContainer {
     width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    overflow-y: auto;
     flex-direction: column;
     align-items: center;
   }
@@ -382,5 +406,9 @@
     width: 100vw;
     left: 0;
     height: 80vh;
+  }
+
+  .commentIput_container div {
+    height: 20%;
   }
 }
