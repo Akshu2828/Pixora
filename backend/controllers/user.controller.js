@@ -110,7 +110,6 @@ export const getAllUsers = async (req, res) => {
 };
 
 export const updateProfilePicture = async (req, res) => {
-  console.log("Uploaded file:", req.file);
   try {
     const { token } = req.body;
     if (!req.file) {
@@ -304,6 +303,34 @@ export const getFollowRequests = async (req, res) => {
   }
 };
 
+export const getUserFollowers = async (req, res) => {
+  try {
+    const { userId } = req.query;
+    const followers = await Follow.find({
+      following: userId,
+      status_accepted: true,
+    }).populate("follower", "name email username profilePicture");
+
+    res.status(200).json(followers);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const getUserFollowings = async (req, res) => {
+  try {
+    const { userId } = req.query;
+    const followings = await Follow.find({
+      follower: userId,
+      status_accepted: true,
+    }).populate("following", "name email username profilePicture");
+
+    res.status(200).json(followings);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 export const getMyFollowers = async (req, res) => {
   try {
     const { token } = req.query;
@@ -360,6 +387,37 @@ export const getAllRequests = async (req, res) => {
       follower: user._id,
     }).populate("following", "name email username profilePicture");
     res.status(200).json(followRequests);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const unfollowUser = async (req, res) => {
+  try {
+    const { token, followingId } = req.body;
+
+    if (!token || !followingId) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const user = await User.findOne({ token: token });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const followDoc = await Follow.findOneAndDelete({
+      follower: user._id,
+      following: followingId,
+      status_accepted: true,
+    });
+
+    if (!followDoc) {
+      return res
+        .status(404)
+        .json({ message: "Follow relationship not found or already removed" });
+    }
+    return res.status(200).json({ message: "Unfollowed successfully" });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

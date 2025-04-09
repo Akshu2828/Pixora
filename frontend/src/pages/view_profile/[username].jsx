@@ -4,6 +4,8 @@ import {
   getMyFollowers,
   getMyFollowings,
   getUserAndProfile,
+  getUserFollowers,
+  getUserFollowings,
   sendFollowRequest,
 } from "@/config/redux/action/authAction";
 import {
@@ -56,7 +58,7 @@ export default function ViewProfile({ userProfile }) {
   };
 
   function getRoomId(user1, user2) {
-    return [user1, user2].sort().join("_"); // Always same order
+    return [user1, user2].sort().join("_");
   }
 
   const messageListenerRef = useRef(null);
@@ -75,7 +77,7 @@ export default function ViewProfile({ userProfile }) {
       );
       socket.emit("join-room", roomId);
 
-      socket.off("receive-message", messageListenerRef.current); // Safe cleanup
+      socket.off("receive-message", messageListenerRef.current);
       socket.on("receive-message", messageListenerRef.current);
 
       return () => {
@@ -87,14 +89,13 @@ export default function ViewProfile({ userProfile }) {
   useEffect(() => {
     if (authState.user && userProfile) {
       const isUserFollowing = authState.getMyFollowing.some(
-        (following) => following.userId === userProfile.userId._id
+        (following) => following?._id === userProfile.userId._id
       );
       setIsFollowing(isUserFollowing);
     }
   }, [authState.getMyFollowing, userProfile]);
 
   useEffect(() => {
-    console.log(userProfile);
     const storedToken = localStorage.getItem("token");
     if (!storedToken) {
       router.push("/login");
@@ -103,8 +104,8 @@ export default function ViewProfile({ userProfile }) {
       dispatch(setTokenIsThere());
       dispatch(getUserAndProfile({ token: storedToken }));
       dispatch(getAllRequests({ token: storedToken }));
-      dispatch(getMyFollowers({ token: userProfile?.userId?.token }));
-      dispatch(getMyFollowings({ token: userProfile?.userId?.token }));
+      dispatch(getMyFollowers({ token: storedToken }));
+      dispatch(getMyFollowings({ token: storedToken }));
     }
   }, [dispatch, router]);
 
@@ -113,8 +114,9 @@ export default function ViewProfile({ userProfile }) {
       let posts = postState.posts.filter((post) => {
         return post.userId.username === userProfile.userId.username;
       });
+      dispatch(getUserFollowers({ userId: userProfile?.userId?._id }));
+      dispatch(getUserFollowings({ userId: userProfile?.userId?._id }));
       setUserPosts(posts);
-      console.log(posts);
     } else {
       console.log("User not found or loading...");
     }
@@ -152,20 +154,32 @@ export default function ViewProfile({ userProfile }) {
     const storedToken = localStorage.getItem("token");
     if (!storedToken) {
       router.push("/login");
+      return;
     }
 
-    await dispatch(
-      sendFollowRequest({
-        token: storedToken,
-        followingId: userProfile.userId._id,
-      })
+    const isFollowingUser = authState?.getUserFollowers.find(
+      (request) => request?.follower?._id === authState.user?.userId?._id
     );
 
-    await dispatch(getMyFollowers({ token: storedToken }));
+    if (isFollowingUser) {
+      await clientServer.delete("/unfollowUser", {
+        data: {
+          token: storedToken,
+          followingId: userProfile.userId._id,
+        },
+      });
+    } else {
+      await dispatch(
+        sendFollowRequest({
+          token: storedToken,
+          followingId: userProfile.userId._id,
+        })
+      );
+    }
     await dispatch(getMyFollowings({ token: storedToken }));
+    await dispatch(getUserFollowers({ userId: userProfile?.userId?._id }));
+    await dispatch(getUserFollowings({ userId: userProfile?.userId?._id }));
     await dispatch(getAllRequests({ token: storedToken }));
-
-    setIsFollowing(!isFollowing);
   };
 
   const renderFollowButton = () => {
@@ -173,12 +187,16 @@ export default function ViewProfile({ userProfile }) {
       (request) => request?.following?._id === userProfile?.userId?._id
     );
 
-    if (existingRequest) {
-      if (existingRequest.status_accepted === null) {
-        return <p>Requested</p>;
-      } else {
-        return <p>Following</p>;
-      }
+    if (existingRequest && existingRequest.status_accepted === null) {
+      return <p>Requested</p>;
+    }
+
+    const isFollowingUser = authState?.getUserFollowers.find(
+      (request) => request?.follower?._id === authState.user?.userId?._id
+    );
+
+    if (isFollowingUser) {
+      return <p>Unfollow</p>;
     } else {
       return <p>Follow</p>;
     }
@@ -228,13 +246,13 @@ export default function ViewProfile({ userProfile }) {
                 </div>
                 <div className={Styles.userTotalFollowers}>
                   <span style={{ fontWeight: "bold" }}>
-                    {authState.getMyFollowers.length}
+                    {authState?.getUserFollowers?.length}
                   </span>
                   <p style={{ color: "#acb4bb" }}>Followers</p>
                 </div>
                 <div className={Styles.userTotalFollowing}>
                   <span style={{ fontWeight: "bold" }}>
-                    {authState.getMyFollowing.length}
+                    {authState?.getUserFollowings?.length}
                   </span>
                   <p style={{ color: "#acb4bb" }}>Following</p>
                 </div>

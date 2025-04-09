@@ -8,6 +8,8 @@ import {
   getMyFollowers,
   getMyFollowings,
   getUserAndProfile,
+  getUserFollowers,
+  getUserFollowings,
   loginUser,
   registerUser,
   sendFollowRequest,
@@ -29,6 +31,8 @@ const initialState = {
   getFollowRequests: [],
   getMyFollowers: [],
   getMyFollowing: [],
+  getUserFollowers: [],
+  getUserFollowings: [],
   acceptFollowRequest: [],
   getAllRequests: [],
 };
@@ -99,7 +103,6 @@ const authSlice = createSlice({
         state.isError = false;
         state.isLoading = false;
         state.allUser_Fetched = true;
-        console.log("reducer", action.payload);
         state.all_users = action.payload;
       })
       .addCase(sendFollowRequest.fulfilled, (state, action) => {
@@ -121,6 +124,16 @@ const authSlice = createSlice({
         state.isError = false;
         state.isLoading = false;
         state.acceptFollowRequest = action.payload;
+      })
+      .addCase(getUserFollowers.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.getUserFollowers = action.payload;
+      })
+      .addCase(getUserFollowings.fulfilled, (state, action) => {
+        state.isError = false;
+        state.isLoading = false;
+        state.getUserFollowings = action.payload;
       })
       .addCase(getMyFollowers.fulfilled, (state, action) => {
         state.isError = false;

@@ -9,9 +9,12 @@ import {
   getMyFollowings,
   getUserAndProfile,
   getUserAndProfileByUsername,
+  getUserFollowers,
+  getUserFollowings,
   loginUser,
   registerUser,
   sendFollowRequest,
+  unfollowUser,
   updateProfilePicture,
   UpdateUserProfile,
   updateUserProfiledata,
@@ -53,7 +56,10 @@ router.route("/acceptFollowRequest").post(acceptFollowRequest);
 router.route("/getMyFollowRequests").get(getFollowRequests);
 router.route("/getMyFollowers").get(getMyFollowers);
 router.route("/getMyFollowing").get(getMyFollowings);
+router.route("/getUserFollowers").get(getUserFollowers);
+router.route("/getUserFollowings").get(getUserFollowings);
 router.route("/getAllRequests").get(getAllRequests);
+router.route("/unfollowUser").delete(unfollowUser);
 router
   .route("/updateProfilePicture")
   .post(upload.single("profilePicture"), updateProfilePicture);

@@ -27,7 +27,6 @@ export const loginUser = createAsyncThunk(
         email: user.email,
         password: user.password,
       });
-      console.log("Login response:", response);
 
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
@@ -78,7 +77,6 @@ export const getAllUsers = createAsyncThunk(
     try {
       const response = await clientServer.get("/getAllUsers");
 
-      console.log("All Users", response.data);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response.data);
@@ -127,6 +125,40 @@ export const acceptFollowRequest = createAsyncThunk(
         token: user.token,
         followerId: user.followerId,
         action_type: user.action_type,
+      });
+
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const getUserFollowers = createAsyncThunk(
+  "user/getUserFollowers",
+  async (user, thunkAPI) => {
+    try {
+      const response = await clientServer.get("/getUserFollowers", {
+        params: {
+          userId: user.userId,
+        },
+      });
+
+      return thunkAPI.fulfillWithValue(response.data);
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data);
+    }
+  }
+);
+
+export const getUserFollowings = createAsyncThunk(
+  "user/getUserFollowings",
+  async (user, thunkAPI) => {
+    try {
+      const response = await clientServer.get("/getUserFollowings", {
+        params: {
+          userId: user.userId,
+        },
       });
 
       return thunkAPI.fulfillWithValue(response.data);
