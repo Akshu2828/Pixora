@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     // origin: "http://localhost:3000",
-    origin: "https://pixora-8yrdofcpj-akshay-gangurdes-projects.vercel.app",
+    origin: "https://pixora-git-main-akshay-gangurdes-projects.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
