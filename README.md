@@ -1,20 +1,20 @@
-# 📸 Pixora
+# Pixora
 
 Pixora is a full-stack Instagram clone built with modern web technologies. It allows users to sign up, upload photos, like and comment on posts, and follow other users — recreating the core functionality of Instagram.
 
-## 🚀 Features
+## Features
 
-- 🔐 Authentication (Sign up / Sign in / Logout)
-- 🖼️ Upload and view posts with image support
-- ❤️ Like & 💬 comment on posts
-- 👥 Follow / Unfollow users
-- 🔍 Explore feed
-- 🧑‍💼 Profile pages with user posts
+- Authentication (Sign up / Sign in / Logout)
+- Upload and view posts with image support
+- Like & 💬 comment on posts
+- Follow / Unfollow users
+- Explore feed
+- Profile pages with user posts
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 **Frontend:**
-- React / Next.js
+- React
 - Redux Toolkit
 
 **Backend:**
